@@ -1,3 +1,9 @@
+from typing import Set, TextIO
+
+def write_to_file(set: Set, file: TextIO) -> None:
+    for l in set:
+        file.write(f"{l}\n")
+
 # read file A
 with open('_sourceA.txt', "r") as fileA:
     linesAset = {lineA.rstrip('\n').casefold() for lineA in fileA if lineA.isspace() == False and lineA}
@@ -10,27 +16,22 @@ with open('_sourceA.txt', "r") as fileA:
         with open('ABintersect.txt', "w") as ABintersect:
             intersect = linesAset & linesBset
             print(f"Number of intersecting elements in A and B: {len(intersect)}")
-            for l in intersect:
-                ABintersect.write(f"{l}\n")
+            write_to_file(intersect, ABintersect)
         # find A - B
         with open('AminusB.txt', "w") as AminusB:
             difference = linesAset - linesBset
             print(f"Number of elements in A but not in B: {len(difference)}")
-            for l in difference:
-                AminusB.write(f"{l}\n")
-
+            write_to_file(difference, AminusB)
         # find B - A
         with open('BminusA.txt', "w") as BminusA:
             difference = linesBset - linesAset
             print(f"Number of elements in B but not in A: {len(difference)}")
-            for l in difference:
-                BminusA.write(f"{l}\n")
+            write_to_file(difference, BminusA)
         # find symmetric difference
         with open('symmetricDiff.txt', "w") as symmetricDiff:
             difference = linesAset ^ linesBset
             print(f"Number of non-intersecting elements : {len(difference)}")
-            for l in difference:
-                symmetricDiff.write(f"{l}\n")
+            write_to_file(difference, symmetricDiff)
         # subset qualities
         print(f"Is A a subset of B: {linesAset <= linesBset}")
         print(f"Is B a subset of A: {linesBset <= linesAset}")
