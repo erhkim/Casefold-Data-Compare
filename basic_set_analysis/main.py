@@ -1,10 +1,10 @@
 # read file A
 with open('_sourceA.txt', "r") as fileA:
-    linesAset = {lineA.rstrip('\n').casefold() for lineA in fileA if lineA.isspace() == False and lineA}
+    linesAset = {lineA.rstrip().casefold() for lineA in fileA if lineA.isspace() == False and lineA}
     print(f"Number of unique elements in A: {len(linesAset)}")
     # read file B
     with open('_sourceB.txt', "r") as fileB:
-        linesBset = {lineB.rstrip('\n').casefold() for lineB in fileB if lineB.isspace() == False and lineB}
+        linesBset = {lineB.rstrip().casefold() for lineB in fileB if lineB.isspace() == False and lineB}
         print(f"Number of unique elements in B: {len(linesBset)}")
         # find intersects
         with open('ABintersect.txt', "w") as ABintersect:
